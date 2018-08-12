@@ -4,6 +4,7 @@ import { mapStyles } from './data/mapStyles.js';
 import './App.css';
 import ListView from './ListView'
 import spinner from './images/circles-loader.svg';
+import foursquare from './images/foursquare.png';
 
 class App extends Component {
 
@@ -59,6 +60,8 @@ class App extends Component {
           </svg>
         </div>
         <div className={ listOpen ? "list open" : "list"}>
+          <h2 className="appTitle">Mon coin restaurant</h2>
+          <hr />
           { /* render markers only when map has loaded */
             mapReady ?
             <ListView
@@ -68,6 +71,7 @@ class App extends Component {
             />
             : <p className="error"> Map has not loaded </p>
           }
+          <img src={foursquare} alt="Powered by Foursquare" className="fs-logo"/>
         </div>
         <div id="map" className="map">
             <div className="loading">
@@ -79,7 +83,6 @@ class App extends Component {
     );
   }
 }
-
 export default scriptLoader(
     ["https://maps.googleapis.com/maps/api/js?key=AIzaSyBpiu2l6-t53So0pk0iFlAscO4DG2llzEQ"]
 )(App);
