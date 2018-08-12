@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import scriptLoader from 'react-async-script-loader';
-import { mapStyles } from './data/mapStyles.js';
-import './App.css';
+import { mapStyles } from '../data/mapStyles.js';
 import ListView from './ListView'
-import spinner from './images/circles-loader.svg';
-import foursquare from './images/foursquare.png';
+import spinner from '../images/circles-loader.svg';
+import foursquare from '../images/foursquare.png';
 
 class App extends Component {
 
@@ -92,7 +91,6 @@ class App extends Component {
     );
   }
 }
-
 
 export default scriptLoader(
     ["https://maps.googleapis.com/maps/api/js?key=AIzaSyBpiu2l6-t53So0pk0iFlAscO4DG2llzEQ"]
