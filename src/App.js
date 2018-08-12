@@ -13,8 +13,13 @@ class App extends Component {
     map: {},
     infowindow: {},
     bounds: {},
-    mapReady: false
+    mapReady: false,
+    // future use - location search
+    mapCenter : { lat: 40.346074, lng: -74.067858 }
   }
+
+
+
   componentWillReceiveProps({isScriptLoadSucceed}){
 
     // Check if script is loaded and if map is defined
@@ -23,7 +28,7 @@ class App extends Component {
       // create map
       const map = new window.google.maps.Map(document.getElementById('map'), {
         zoom: 12,
-        center: {lat: 40.7413549, lng: -73.9980244},
+        center: this.state.mapCenter,
         styles: mapStyles
       });
 
@@ -50,7 +55,8 @@ class App extends Component {
 
   render() {
 
-    const { listOpen, map, infowindow, bounds, mapReady } = this.state;
+    const { listOpen, map, infowindow, bounds, mapReady, mapCenter } = this.state;
+    const { toggleList } = this.props;
 
     return (
       <div className="container">
@@ -60,7 +66,7 @@ class App extends Component {
           </svg>
         </div>
         <div className={ listOpen ? "list open" : "list"}>
-          <h2 className="appTitle">Mon coin restaurant</h2>
+          <h2 className="appTitle">Red Bank Eats</h2>
           <hr />
           { /* render markers only when map has loaded */
             mapReady ?
@@ -68,6 +74,9 @@ class App extends Component {
               map={map}
               infowindow={infowindow}
               bounds={bounds}
+              mapCenter={mapCenter}
+              toggleList={this.toggleList}
+              listOpen={listOpen}
             />
             : <p className="error"> Map has not loaded </p>
           }
@@ -83,6 +92,8 @@ class App extends Component {
     );
   }
 }
+
+
 export default scriptLoader(
     ["https://maps.googleapis.com/maps/api/js?key=AIzaSyBpiu2l6-t53So0pk0iFlAscO4DG2llzEQ"]
 )(App);
