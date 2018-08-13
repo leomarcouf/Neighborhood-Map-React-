@@ -17,8 +17,9 @@ const sortName = (a, b) => {
 // url and params
 const fSURL = 'https://api.foursquare.com/v2/venues/';
 const VERS = '20171227';
-const RADIUS = '1250'
+const RADIUS = '500'
 const CATEGORIES = {
+  Bar:'4bf58dd8d48988d116941735',
   american: '4bf58dd8d48988d14e941735',
   asian: '4bf58dd8d48988d142941735',
   pub: '4bf58dd8d48988d11b941735',
@@ -47,7 +48,7 @@ export const getFSLocations = (mapCenter) => {
     })
   .then(data => {
     const places = data.response.venues;
-    const goodPlaces = places.filter( place => place.location.address && place.location.city && place.location.city === "Red Bank");
+    const goodPlaces = places.filter( place => place.location.address && place.location.city && place.location.city === "Paris");
 
     // sort before updating state
     goodPlaces.sort(sortName);
